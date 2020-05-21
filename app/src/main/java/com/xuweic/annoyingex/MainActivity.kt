@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
 
         val annoyingApp = (application as AnnoyingApp)
         val workAnnoyingManager = annoyingApp.workAnnoyingManager
-        //val annoyingExNotificationManager = awypApp.annoyingExNotificationManager
-
-        Log.i("chenxuweiyi", "here I am")
 
         btAnnoying.setOnClickListener {
             workAnnoyingManager.startAnnoying()
@@ -29,5 +26,6 @@ class MainActivity : AppCompatActivity() {
             //annoyingExNotificationManager.post()
         }
 
+        workAnnoyingManager.startFetch()
     }
 }

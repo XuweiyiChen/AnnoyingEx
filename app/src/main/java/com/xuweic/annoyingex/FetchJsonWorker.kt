@@ -4,18 +4,17 @@ import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 
-class PostMessageWorker(private val context: Context, workParams: WorkerParameters): Worker(context, workParams) {
+class FetchJsonWorker(private val context: Context, workParams: WorkerParameters): Worker(context, workParams) {
 
+    private lateinit var allPhrase: AllPhrases
 
     override fun doWork(): Result {
 
         val httpJsonPharserManager = HttpJsonPharserManager(context)
-        val annoyingExNotificationManager = AnnoyingExNotificationManager(context)
 
         httpJsonPharserManager.getAllPhrases { allPhrases ->
-            annoyingExNotificationManager.post(allPhrases.messages)
+            allPhrase = allPhrases
         }
         return Result.success()
     }
-
 }
